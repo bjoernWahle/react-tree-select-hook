@@ -19,36 +19,14 @@ export function copyNodes(nodes) {
   }))
 }
 
-export function findAndShowByLabelLike(nodes, searchTerm) {
-  const [newNodes, anyMatch] = nodes.reduce(
-    ([newOptions, anyMatch], el) => {
-      const newEl = {
-        ...el,
-        show: el.label.indexOf(searchTerm) > -1
-      }
-      if (el.children && el.children.length > 0) {
-        const [childNodes, anyMatch] = findAndShowByLabelLike(
-          el.children,
-          searchTerm
-        )
-        newEl.children = childNodes
-        newEl.expanded = anyMatch
-        newEl.show = el.label.indexOf(searchTerm) > -1 || anyMatch
-      }
-      return [[...newOptions, newEl], anyMatch || newEl.show]
-    },
-    [[], false]
-  )
-  return [newNodes, anyMatch]
-}
-
-export function buildNodeIndex(nodes, index) {
+export function buildNodeIndex(nodes, index = {}) {
   nodes.forEach((node) => {
     index[node.id] = node
     if (node.children) {
-      buildNodeIndex(node.children, index)
+      index = buildNodeIndex(node.children, index)
     }
   })
+  return index
 }
 
 function updateParents(node, checkedState, updates) {
@@ -130,30 +108,4 @@ export function treeToMap(options, value, acc = {}) {
     treeToMap(option.children || [], value, acc)
     return acc
   }, acc)
-}
-
-/**
- * This function merges two trees recursively
- * @param acc
- * @param next
- * @returns {{children: *[], forgeObjectIds}|*}
- */
-export function reduceTrees(acc, next) {
-  if (!acc) {
-    return next
-  }
-  if (!next) {
-    return acc
-  }
-  if (acc.children && next.children) {
-    for (const otherChild of next.children) {
-      let accChild = acc.children.find((el) => el.label === otherChild.label)
-      if (accChild) {
-        accChild = reduceTrees(accChild, otherChild)
-      } else {
-        acc.children.push(otherChild)
-      }
-    }
-  }
-  return acc
 }

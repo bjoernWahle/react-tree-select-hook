@@ -1,12 +1,8 @@
-import { TreeSelect } from '../TreeSelect/components/TreeSelect'
 import React from 'react'
-import { getSampleOptions } from '../TreeSelect/components/sampleOptions'
-import { useTree } from '../TreeSelect/hooks/useTree'
-import { Box } from 'grommet'
+import { useTreeSelect } from '..'
 
 export default { title: 'TreeSelect' }
 
-const elementTypeNodes = getSampleOptions()
 const drinksAndSnacksNodes = [
   {
     label: 'Drinks',
@@ -29,26 +25,6 @@ const drinksAndSnacksNodes = [
   }
 ]
 
-export const GrommetWithSearchBox = () => {
-  const {
-    nodes,
-    treeSelectState: { nodeIndex },
-    selectAll,
-    selectNone,
-    getCheckboxProps
-  } = useTree(elementTypeNodes)
-
-  return (
-    <TreeSelect
-      selectAll={selectAll}
-      selectNone={selectNone}
-      getCheckboxProps={getCheckboxProps}
-      nodeIndex={nodeIndex}
-      nodes={nodes}
-    />
-  )
-}
-
 export const Standard = () => {
   const {
     nodes,
@@ -56,7 +32,7 @@ export const Standard = () => {
     getExpandButtonProps,
     isExpanded,
     simplifiedSelection
-  } = useTree(elementTypeNodes)
+  } = useTreeSelect(drinksAndSnacksNodes)
 
   const TreeSelectNode = ({ node }) => {
     return (
@@ -82,13 +58,13 @@ export const Standard = () => {
   }
 
   return (
-    <Box>
+    <div>
       <span>{simplifiedSelection.map((el) => el.label).join(', ')}</span>
       <ul>
         {nodes.map((node) => {
           return <TreeSelectNode key={node.id} node={node} />
         })}
       </ul>
-    </Box>
+    </div>
   )
 }

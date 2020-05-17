@@ -130,18 +130,17 @@ export const treeSelectReducer = (
 function buildInitialState(nodes: NodeLike[]): TreeSelectState {
   const preparedNodes: Node[] = addParentsAndIds(copyNodes(nodes))
   const initialState = treeToMap(preparedNodes, true)
-  const nodeIndex = {}
-  buildNodeIndex(preparedNodes, nodeIndex)
+  const nodeIndex = buildNodeIndex(preparedNodes)
   const expanded = treeToMap(preparedNodes, false)
   return { checked: initialState, nodeIndex, expanded }
 }
 
-export function useTree(
-  nodes: NodeLike[],
+export function useTreeSelect(
+  rawNodes: NodeLike[],
   reducer = treeSelectReducer
 ): {
-  onToggle: (id: string) => void
-  treeSelectState: TreeSelectState
+  toggleChecked: (id: string) => void
+  state: TreeSelectState
   selectAll: () => void
   selectNone: () => void
   setNodes: (nodes: NodeLike[]) => void
@@ -161,11 +160,8 @@ export function useTree(
   }
   simplifiedSelection: Node[]
 } {
-  const [treeSelectState, dispatch] = useReducer(
-    reducer,
-    buildInitialState(nodes)
-  )
-  const onToggle = (id: string) => {
+  const [state, dispatch] = useReducer(reducer, buildInitialState(rawNodes))
+  const toggleChecked = (id: string) => {
     dispatch({ type: actionTypes.toggleNode, payload: { id: id } })
   }
   const selectAll = () => {
@@ -180,15 +176,10 @@ export function useTree(
   const toggleExpanded = (id: string) => {
     dispatch({ type: actionTypes.toggleExpanded, payload: { id } })
   }
-  const augmentedNodes = useMemo((): Node[] => {
-    return (Object.values(treeSelectState.nodeIndex) as Node[]).filter(
-      (node: Node) => node.parent === undefined
-    )
-  }, [treeSelectState.nodeIndex])
   const getCheckboxProps = (id: string) => {
     return {
-      checked: treeSelectState.checked[id],
-      onChange: () => onToggle(id),
+      checked: state.checked[id],
+      onChange: () => toggleChecked(id),
       type: 'checkbox'
     }
   }
@@ -200,24 +191,28 @@ export function useTree(
     }
   }
   const isExpanded = (id: string) => {
-    return treeSelectState.expanded[id]
+    return state.expanded[id]
   }
-
+  const nodes = useMemo((): Node[] => {
+    return (Object.values(state.nodeIndex) as Node[]).filter(
+      (node: Node) => node.parent === undefined
+    )
+  }, [state.nodeIndex])
   const simplifiedSelection = useMemo(
-    () => flatCollectCheckedNodes(augmentedNodes, treeSelectState.checked),
-    [augmentedNodes, treeSelectState.checked]
+    () => flatCollectCheckedNodes(nodes, state.checked),
+    [nodes, state.checked]
   )
 
   return {
-    nodes: augmentedNodes,
-    treeSelectState,
-    onToggle,
+    nodes,
+    state,
+    toggleChecked,
     selectAll,
     selectNone,
     setNodes,
-    getCheckboxProps: getCheckboxProps,
+    getCheckboxProps,
     getExpandButtonProps,
-    isExpanded: isExpanded,
+    isExpanded,
     simplifiedSelection
   }
 }

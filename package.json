@@ -1,10 +1,10 @@
 {
-  "name": "react-tree-select-box",
-  "version": "1.0.0",
-  "description": "A highly customizable tree select component",
-  "author": "bjoernWahle",
+  "name": "react-tree-select-hook",
+  "version": "0.0.1",
+  "description": "A headless tree select utility using hooks.",
+  "author": "Björn Wahle",
   "license": "MIT",
-  "repository": "bjoernWahle/react-tree-select-box",
+  "repository": "bjoernWahle/react-tree-select-hook",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -26,7 +26,7 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.8.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.18",
@@ -64,11 +64,5 @@
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "grommet": "^2.13.0",
-    "grommet-icons": "^4.4.0",
-    "styled-components": "^5.1.0",
-    "react-intersection-observer": "^8.26.2"
-  }
+  ]
 }

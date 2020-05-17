@@ -1,20 +1,20 @@
-# react-tree-select-box
+# react-tree-select-hook
 
-> A highly customizable tree select component
+> A headless tree select utility using hooks.
 
 [![NPM](https://img.shields.io/npm/v/react-tree-select-box.svg)](https://www.npmjs.com/package/react-tree-select-box) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-tree-select-box
+npm install --save react-tree-select-hook
 ```
 
 ## Usage
 
 ```tsx
 import React from 'react'
-import { useTree } from 'react-tree-select-headless'
+import { useTreeSelect } from 'react-tree-select-hook'
 
 const drinksAndSnacksNodes = [
   {
@@ -45,8 +45,10 @@ export const Standard = () => {
     getExpandButtonProps,
     isExpanded,
     simplifiedSelection
-  } = useTree(drinksAndSnacksNodes)
+  } = useTreeSelect(drinksAndSnacksNodes)
 
+  // Since the tree can have a variable number of levels, let's define a component that renders
+  // in a recursive way
   const TreeSelectNode = ({ node }) => {
     return (
       <li>
@@ -87,4 +89,4 @@ export const Standard = () => {
 
 ## License
 
-MIT © [bjoernWahle](https://github.com/bjoernWahle)
+MIT © [Björn Wahle](https://github.com/bjoernWahle)

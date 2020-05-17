@@ -1,4 +1,3 @@
-import { TreeSelect } from './TreeSelect/components/TreeSelect'
-import { useTree } from './TreeSelect/hooks/useTree'
+import { useTreeSelect } from './TreeSelect/hooks/useTreeSelect'
 
-export { useTree, TreeSelect }
+export { useTreeSelect }
