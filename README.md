@@ -2,7 +2,7 @@
 
 > A headless tree select utility using hooks.
 
-[![NPM](https://img.shields.io/npm/v/react-tree-select-box.svg)](https://www.npmjs.com/package/react-tree-select-box) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-tree-select-hook.svg)](https://www.npmjs.com/package/react-tree-select-box) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
