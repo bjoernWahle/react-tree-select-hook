@@ -1,0 +1,12 @@
+.tree-select-container {
+  font-size: 12px;
+  line-height: 14px;
+
+  // first level should not have left padding
+  > ul {
+    padding-inline-start: 0;
+  }
+  li {
+    list-style: none;
+  }
+}

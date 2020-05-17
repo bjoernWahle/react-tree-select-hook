@@ -1,21 +1,12 @@
-# react-tree-select-box
-
-> A highly customizable tree select component
-
-[![NPM](https://img.shields.io/npm/v/react-tree-select-box.svg)](https://www.npmjs.com/package/react-tree-select-box) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-## Install
-
-```bash
-npm install --save react-tree-select-box
-```
-
-## Usage
-
-```tsx
+import { TreeSelect } from '../TreeSelect/components/TreeSelect'
 import React from 'react'
-import { useTree } from 'react-tree-select-headless'
+import { getSampleOptions } from '../TreeSelect/components/sampleOptions'
+import { useTree } from '../TreeSelect/hooks/useTree'
+import { Box } from 'grommet'
 
+export default { title: 'TreeSelect' }
+
+const elementTypeNodes = getSampleOptions()
 const drinksAndSnacksNodes = [
   {
     label: 'Drinks',
@@ -38,6 +29,26 @@ const drinksAndSnacksNodes = [
   }
 ]
 
+export const GrommetWithSearchBox = () => {
+  const {
+    nodes,
+    treeSelectState: { nodeIndex },
+    selectAll,
+    selectNone,
+    getCheckboxProps
+  } = useTree(elementTypeNodes)
+
+  return (
+    <TreeSelect
+      selectAll={selectAll}
+      selectNone={selectNone}
+      getCheckboxProps={getCheckboxProps}
+      nodeIndex={nodeIndex}
+      nodes={nodes}
+    />
+  )
+}
+
 export const Standard = () => {
   const {
     nodes,
@@ -45,7 +56,7 @@ export const Standard = () => {
     getExpandButtonProps,
     isExpanded,
     simplifiedSelection
-  } = useTree(drinksAndSnacksNodes)
+  } = useTree(elementTypeNodes)
 
   const TreeSelectNode = ({ node }) => {
     return (
@@ -71,20 +82,13 @@ export const Standard = () => {
   }
 
   return (
-    <div>
+    <Box>
       <span>{simplifiedSelection.map((el) => el.label).join(', ')}</span>
       <ul>
         {nodes.map((node) => {
           return <TreeSelectNode key={node.id} node={node} />
         })}
       </ul>
-    </div>
+    </Box>
   )
 }
-
-
-```
-
-## License
-
-MIT © [bjoernWahle](https://github.com/bjoernWahle)
