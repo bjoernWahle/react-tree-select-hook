@@ -1,19 +1,17 @@
 {
-  "name": "react-tree-select-box-example",
-  "homepage": "https://bjoernWahle.github.io/react-tree-select-box",
-  "version": "0.0.0",
+  "name": "react-tree-select-hook-example",
+  "homepage": "https://github.com/bjoernWahle/react-tree-select-hook",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "file:../node_modules/react-scripts",
-    "react-tree-select-box": "file:.."
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-scripts": "latest",
+    "react-tree-select-hook": "1.0.0"
   },
   "scripts": {
-    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
-    "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
-    "test": "node ../node_modules/react-scripts/bin/react-scripts.js test",
-    "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"

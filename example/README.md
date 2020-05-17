@@ -1,5 +1,13 @@
-This example was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Simple example
 
-It is linked to the react-tree-select-box package in the parent directory for development purposes.
+This is a simple example for the react-tree-select-hook. You can find more examples in the storybook at https://react-tree-select-hook.now.sh
 
-You can run `npm install` and then `npm start` to test your package.
+## Install
+```
+npm install
+```
+
+## Try it out
+```
+npm start
+```
