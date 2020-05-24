@@ -1,6 +1,6 @@
 {
   "name": "react-tree-select-hook",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "A headless tree select utility using hooks.",
   "author": "Björn Wahle",
   "license": "MIT",
@@ -23,7 +23,9 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "react": "^16.8.0"
@@ -60,9 +62,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "jest-environment-jsdom-sixteen": "^1.0.3"
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "semantic-release": "^17.0.7"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  }
 }
