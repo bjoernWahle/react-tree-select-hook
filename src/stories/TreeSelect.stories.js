@@ -1,7 +1,7 @@
-import React from 'react'
-import { useTreeSelect } from '..'
+import React from 'react';
+import { useTreeSelect } from '..';
 
-export default { title: 'TreeSelect' }
+export default { title: 'TreeSelect' };
 
 const drinksAndSnacksNodes = [
   {
@@ -23,7 +23,7 @@ const drinksAndSnacksNodes = [
       }
     ]
   }
-]
+];
 
 export const Standard = () => {
   const {
@@ -32,7 +32,7 @@ export const Standard = () => {
     getExpandButtonProps,
     isExpanded,
     simplifiedSelection
-  } = useTreeSelect(drinksAndSnacksNodes)
+  } = useTreeSelect(drinksAndSnacksNodes);
 
   const TreeSelectNode = ({ node }) => {
     return (
@@ -54,17 +54,17 @@ export const Standard = () => {
           </ul>
         )}
       </li>
-    )
-  }
+    );
+  };
 
   return (
     <div>
       <span>{simplifiedSelection.map((el) => el.label).join(', ')}</span>
       <ul>
         {nodes.map((node) => {
-          return <TreeSelectNode key={node.id} node={node} />
+          return <TreeSelectNode key={node.id} node={node} />;
         })}
       </ul>
     </div>
-  )
-}
+  );
+};

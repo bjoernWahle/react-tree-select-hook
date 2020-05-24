@@ -1,3 +1,3 @@
-import { useTreeSelect } from './TreeSelect/hooks/useTreeSelect'
+import { useTreeSelect } from './TreeSelect/hooks/useTreeSelect';
 
-export { useTreeSelect }
+export { useTreeSelect };
